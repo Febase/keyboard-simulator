@@ -1,12 +1,13 @@
 import { Vector3 } from '@react-three/fiber'
 import { IkeyConfig } from '../../../types/KeyboardType'
-
-const DIFF_WIDTH = 0.3 / 2
-const DIFF_DEPTH_TOP = 0.2 / 2
-const DIFF_DEPTH_BOTTOM = 0.4 / 2
-const TOP_WIDTH_INSET = 0.07
-const TOP_DEPTH_INSET = 0.05
-const HEIGHT = 0.5
+import {
+  DIFF_WIDTH,
+  DIFF_DEPTH_TOP,
+  DIFF_DEPTH_BOTTOM,
+  TOP_WIDTH_INSET,
+  TOP_DEPTH_INSET,
+  HEIGHT,
+} from './consts'
 
 const createVertices = (width: number, depth: number) => {
   const positionBottomRect = [
