@@ -1,4 +1,4 @@
-import { useFrame } from '@react-three/fiber'
+import { ThreeEvent, useFrame } from '@react-three/fiber'
 import React, { useState } from 'react'
 import KeyCap from './Key/KeyCap'
 import KeyLegend from './Key/KeyLegend'
@@ -16,14 +16,13 @@ export const Key = (props: KeyProps) => {
       setKeyDownPosition((prev) => prev + KEY_DOWN_DURATION)
   })
 
+  const onKeyClick = (evt: ThreeEvent<MouseEvent>) => {
+    evt.stopPropagation()
+    setKeyDownPosition(KEY_DOWN_POSITION)
+  }
+
   return (
-    <group
-      onClick={(evt) => {
-        evt.stopPropagation()
-        setKeyDownPosition(KEY_DOWN_POSITION)
-      }}
-      position={[0, keyDownPosition, 0]}
-    >
+    <group onClick={onKeyClick} position={[0, keyDownPosition, 0]}>
       <KeyCap
         config={keyConfig}
         position={[keyConfig.column, 0, keyConfig.row]}
