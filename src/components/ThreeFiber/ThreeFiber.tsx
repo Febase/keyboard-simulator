@@ -4,13 +4,18 @@
 import styled from '@emotion/styled'
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import * as THREE from 'three'
 import Keyboard from '../Keyboard'
 import Lights from '../Lights'
 
 export const ThreeFiber = () => {
   return (
     <CanvasContainer id="canvas-container">
-      <Canvas camera={{ position: [-2, 2, 5] }}>
+      <Canvas
+        camera={{ position: [-2, 2, 5] }}
+        gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
+        // linear
+      >
         <Keyboard position={[-1, 0, -1]} />
         <Lights />
         <axesHelper scale={10} />
