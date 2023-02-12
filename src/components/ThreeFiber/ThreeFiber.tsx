@@ -4,25 +4,14 @@
 import styled from '@emotion/styled'
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import KeyCap from '../Keyboard/Key/KeyCap'
+import Keyboard from '../Keyboard'
 import Lights from '../Lights'
-
-const keyConfigs = [
-  { row: 0, column: 0, colSpan: 1, rowSpan: 1, color: '#BFACE2' },
-  { row: 0, column: 1, colSpan: 1, rowSpan: 1, color: '#FFF2F2' },
-  { row: 1, column: 0, colSpan: 1, rowSpan: 2, color: '#FFEEED' },
-]
 
 export const ThreeFiber = () => {
   return (
     <CanvasContainer id="canvas-container">
       <Canvas camera={{ position: [-2, 2, 5] }}>
-        {keyConfigs.map((keyConfig) => (
-          <KeyCap
-            config={keyConfig}
-            position={[keyConfig.column, 0, keyConfig.row]}
-          />
-        ))}
+        <Keyboard position={[-1, 0, -1]} />
         <Lights />
         <axesHelper scale={10} />
         <OrbitControls />
