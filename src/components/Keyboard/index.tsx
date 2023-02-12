@@ -1,8 +1,7 @@
-import { Vector3, useFrame } from '@react-three/fiber'
-import React, { useRef, useState } from 'react'
-import KeyCap from './Key/KeyCap'
-import KeyLegend from './Key/KeyLegend'
+import { Vector3 } from '@react-three/fiber'
+import React, { useRef } from 'react'
 import { IkeyConfig } from '../../types/KeyboardType'
+import { Key } from './Key'
 
 const keyConfigs: IkeyConfig[] = [
   {
@@ -35,39 +34,6 @@ const keyConfigs: IkeyConfig[] = [
 
 interface IKeyboardProps {
   position: Vector3
-}
-
-const KEY_DOWN_POSITION = -0.5
-const KEY_DOWN_DURATION = 0.02
-
-type KeyProps = { keyConfig: IkeyConfig }
-const Key = (props: KeyProps) => {
-  const { keyConfig } = props
-  const [keyDownPosition, setKeyDownPosition] = useState<number>(0)
-
-  useFrame(() => {
-    keyDownPosition < 0 &&
-      setKeyDownPosition((prev) => prev + KEY_DOWN_DURATION)
-  })
-
-  return (
-    <group
-      onClick={(evt) => {
-        evt.stopPropagation()
-        setKeyDownPosition(KEY_DOWN_POSITION)
-      }}
-      position={[0, keyDownPosition, 0]}
-    >
-      <KeyCap
-        config={keyConfig}
-        position={[keyConfig.column, 0, keyConfig.row]}
-      />
-      <KeyLegend
-        config={keyConfig.legend}
-        keyPosition={{ row: keyConfig.row, column: keyConfig.column }}
-      />
-    </group>
-  )
 }
 
 export default ({ position }: IKeyboardProps) => {
