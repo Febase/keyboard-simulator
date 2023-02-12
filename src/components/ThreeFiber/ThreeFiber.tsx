@@ -7,17 +7,22 @@ import { Canvas } from '@react-three/fiber'
 import KeyCap from '../Keyboard/Key/KeyCap'
 import Lights from '../Lights'
 
-const keyConfig = {
-  rowSpan: 1,
-  colSpan: 1,
-  color: '#BFACE2',
-}
+const keyConfigs = [
+  { row: 0, column: 0, colSpan: 1, rowSpan: 1, color: '#BFACE2' },
+  { row: 0, column: 1, colSpan: 1, rowSpan: 1, color: '#FFF2F2' },
+  { row: 1, column: 0, colSpan: 1, rowSpan: 2, color: '#FFEEED' },
+]
 
 export const ThreeFiber = () => {
   return (
     <CanvasContainer id="canvas-container">
       <Canvas camera={{ position: [-2, 2, 5] }}>
-        <KeyCap config={keyConfig} position={[0, 0, 0]} />
+        {keyConfigs.map((keyConfig) => (
+          <KeyCap
+            config={keyConfig}
+            position={[keyConfig.column, 0, keyConfig.row]}
+          />
+        ))}
         <Lights />
         <axesHelper scale={10} />
         <OrbitControls />

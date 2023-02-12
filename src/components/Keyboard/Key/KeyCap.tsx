@@ -1,3 +1,4 @@
+import { Vector3 } from '@react-three/fiber'
 import { IkeyConfig } from '../../../types/KeyboardType'
 
 const DIFF_WIDTH = 0.3 / 2
@@ -132,14 +133,15 @@ const createVertices = (width: number, depth: number) => {
 
 interface IKeyCapProps {
   config: IkeyConfig
+  position: Vector3
 }
 
-export default ({ config }: IKeyCapProps) => {
+export default ({ config, position }: IKeyCapProps) => {
   const { rowSpan, colSpan, color } = config
   const vertices = createVertices(colSpan, rowSpan)
 
   return (
-    <mesh>
+    <mesh position={position}>
       <bufferGeometry
         attach="geometry"
         onUpdate={(self) => self.computeVertexNormals()}
