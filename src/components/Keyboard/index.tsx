@@ -1,7 +1,7 @@
 import { Vector3 } from '@react-three/fiber'
 import React, { useRef } from 'react'
 import { IkeyConfig } from '../../types/KeyboardType'
-import { Key } from './Key'
+import Key from './Key'
 
 const keyConfigs: IkeyConfig[] = [
   {
