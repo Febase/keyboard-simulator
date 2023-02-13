@@ -1,9 +1,9 @@
 import { Vector3 } from '@react-three/fiber'
-import React from 'react'
-import KeyCap from './Key/KeyCap'
-import KeyLegend from './Key/KeyLegend'
+import React, { useRef } from 'react'
+import { IkeyConfig } from '../../types/KeyboardType'
+import Key from './Key'
 
-const keyConfigs = [
+const keyConfigs: IkeyConfig[] = [
   {
     row: 0,
     column: 0,
@@ -39,17 +39,11 @@ interface IKeyboardProps {
 export default ({ position }: IKeyboardProps) => {
   return (
     <group position={position}>
-      {keyConfigs.map((keyConfig) => (
-        <React.Fragment key={`${keyConfig.row}-${keyConfig.column}`}>
-          <KeyCap
-            config={keyConfig}
-            position={[keyConfig.column, 0, keyConfig.row]}
-          />
-          <KeyLegend
-            config={keyConfig.legend}
-            keyPosition={{ row: keyConfig.row, column: keyConfig.column }}
-          />
-        </React.Fragment>
+      {keyConfigs.map((keyConfig: IkeyConfig) => (
+        <Key
+          key={`${keyConfig.row}-${keyConfig.column}`}
+          keyConfig={keyConfig}
+        />
       ))}
     </group>
   )
