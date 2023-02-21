@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styled from '@emotion/styled'
 import { ReactComponent as PlusIcon } from '../../res/plus.svg'
+import PlayButton from './PlayButton'
 
 export default function Items() {
   const [data, setData] = useState<string[]>([])
@@ -31,6 +32,7 @@ function Item({ text }: IItemProps) {
         placeholder="plz enter text"
         onChange={(e) => setValue(e.target.value)}
       />
+      <PlayButton />
     </ItemContainer>
   )
 }
