@@ -50,3 +50,17 @@ export default (props: KeyProps) => {
     </group>
   )
 }
+
+export const genCustomKeyEventFromCharacter = (
+  char: string,
+): CustomEvent<ThreeEventType> => {
+  if (char.length !== 1) {
+    throw new Error(
+      `Invalid input for custom key event. Input should be single charater. Input is ${char}, though.`,
+    )
+  }
+
+  return new CustomEvent<ThreeEventType>('threekeyboardevent', {
+    detail: { keyId: char.toLowerCase() },
+  })
+}
