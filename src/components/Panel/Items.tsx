@@ -31,12 +31,11 @@ function Item({ text }: IItemProps) {
         value={value}
         placeholder="plz enter text"
         onChange={(e) => {
-            const text = e.target.value
-            const regex = /^[a-zA-Z1-9`~!@#$%^&*()_\+\s]*$/
-        
-            text.match(regex) && setValue(text)
-            }
-        }
+          const text = e.target.value
+          const regex = /^[a-zA-Z1-9`~!@#$%^&*()_+\s]*$/
+
+          text.match(regex) && setValue(text)
+        }}
       />
       <PlayButton />
     </ItemContainer>
