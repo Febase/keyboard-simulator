@@ -1,13 +1,14 @@
-import React from 'react'
 import './App.css'
 import styled from '@emotion/styled'
 import { ThreeFiber } from './components/ThreeFiber/ThreeFiber'
+import Panel from './components/Panel'
 
 function App() {
   return (
     <AppWrapper className="App">
       <Msg />
       <ThreeFiber />
+      <Panel />
     </AppWrapper>
   )
 }
