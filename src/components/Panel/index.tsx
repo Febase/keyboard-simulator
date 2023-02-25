@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import { useState } from 'react'
 import Items from './Items'
+import { buttonStyle } from './styles'
 import { ReactComponent as OpenIcon } from '../../res/open.svg'
 import { ReactComponent as CloseIcon } from '../../res/close.svg'
 
@@ -23,14 +24,9 @@ function OpenButton({ open, onClick }: IOpenButton) {
 }
 
 const Button = styled.div`
+  ${buttonStyle}
   background: #393e46;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0.5rem;
   &:hover {
     background: #d65a31;

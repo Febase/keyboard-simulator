@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import styled from '@emotion/styled'
-import { ReactComponent as PlusIcon } from '../../res/plus.svg'
 import PlayButton from './PlayButton'
+import { buttonStyle } from './styles'
+import { ReactComponent as PlusIcon } from '../../res/plus.svg'
 
 export default function Items() {
   const [data, setData] = useState<string[]>([])
@@ -69,15 +70,10 @@ function AddButton({ onClick }: IAddButtonProps) {
 }
 
 const Button = styled.div`
-  background: #EEEEEE;
+  ${buttonStyle}
+  background: #eeeeee;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   &:hover {
-    background: #D65A31;
+    background: #d65a31;
   }
 `
