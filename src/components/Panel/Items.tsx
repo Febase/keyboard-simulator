@@ -5,6 +5,7 @@ import PlayButton from './PlayButton'
 
 export default function Items() {
   const [data, setData] = useState<string[]>([])
+
   const onButtonClick = () => setData([...data, ''])
 
   return (
@@ -23,6 +24,51 @@ interface IItemProps {
 
 function Item({ text }: IItemProps) {
   const [value, setValue] = useState<string>(text)
+  const [isPlaying, setIsPlaying] = useState<boolean>(false)
+  const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null)
+
+  const play = () => {
+    setIsPlaying(true)
+
+    let index = 0
+    const textArray = value.split('')
+    const id = setInterval(() => {
+      const keyId = textArray[index].toLowerCase()
+      const event = new CustomEvent('threekeyboardevent', {
+        detail: {
+          keyId,
+        },
+      })
+      document.dispatchEvent(event)
+
+      index++
+
+      if (index === textArray.length) {
+        clearInterval(id)
+        setIsPlaying(false)
+        setIntervalId(null)
+      }
+    }, 200)
+
+    setIntervalId(id)
+  }
+
+  const stop = () => {
+    if (intervalId) {
+      clearInterval(intervalId)
+
+      setIntervalId(null)
+      setIsPlaying(false)
+
+      document.dispatchEvent(
+        new CustomEvent('threekeyboardevent', {
+          detail: {
+            keyId: null,
+          },
+        }),
+      )
+    }
+  }
 
   return (
     <ItemContainer>
@@ -37,7 +83,7 @@ function Item({ text }: IItemProps) {
           text.match(regex) && setValue(text)
         }}
       />
-      <PlayButton />
+      {<PlayButton isPlaying={isPlaying} onClick={isPlaying ? stop : play} />}
     </ItemContainer>
   )
 }
