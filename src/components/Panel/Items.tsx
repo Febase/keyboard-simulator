@@ -33,8 +33,7 @@ function Item({ text }: IItemProps) {
         placeholder="plz enter text"
         onChange={(e) => {
           const text = e.target.value
-          const regex = /^[a-zA-Z1-9`~!@#$%^&*()_+\s]*$/
-
+          const regex = /^[a-zA-Z0-9`~!@#$%^&*()_+\s]*$/
           text.match(regex) && setValue(text)
         }}
       />
