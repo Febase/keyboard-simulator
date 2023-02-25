@@ -63,13 +63,13 @@ interface IAddButtonProps {
 function AddButton({ onClick }: IAddButtonProps) {
   return (
     <Button>
-      <PlusIcon fill="#ffffff" onClick={onClick} />
+      <PlusIcon onClick={onClick} />
     </Button>
   )
 }
 
 const Button = styled.div`
-  background: #cd5888;
+  background: #EEEEEE;
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -78,6 +78,6 @@ const Button = styled.div`
   justify-content: center;
   align-items: center;
   &:hover {
-    background: #913175;
+    background: #D65A31;
   }
 `

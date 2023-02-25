@@ -1,10 +1,19 @@
 import styled from '@emotion/styled'
 import { ReactComponent as PlayIcon } from '../../res/play.svg'
+import { useState } from 'react'
 
 export default function PlayButton() {
+  const [isHovered, setIsHovered] = useState(false)
+  const handleMouseEnter = () => {
+    setIsHovered(true)
+  }
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+  }
+
   return (
-    <Button>
-      <PlayIcon fill="#913175" />
+    <Button onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <PlayIcon fill={isHovered ? '#d65a31' : '#ffffff'} />
     </Button>
   )
 }
