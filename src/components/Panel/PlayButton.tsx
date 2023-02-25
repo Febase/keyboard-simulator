@@ -21,4 +21,5 @@ export default function PlayButton() {
 
 const Button = styled.div`
   ${buttonStyle}
+  margin-top: 0.5rem;
 `

@@ -1,41 +1,31 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import PlayButton from './PlayButton'
-import { buttonStyle } from './styles'
-import { ReactComponent as PlusIcon } from '../../res/plus.svg'
 
 export default function Items() {
-  const [data, setData] = useState<string[]>([])
-  const onButtonClick = () => setData([...data, ''])
-
-  return (
-    <>
-      {data.map((value, index) => (
-        <Item key={index} text={value} />
-      ))}
-      <AddButton onClick={onButtonClick} />
-    </>
-  )
+  return <Item />
 }
 
-interface IItemProps {
-  text: string
-}
-
-function Item({ text }: IItemProps) {
-  const [value, setValue] = useState<string>(text)
+function Item() {
+  const [value, setValue] = useState<string>('')
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+    }
+  }
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const text = e.target.value
+    const regex = /^[a-zA-Z0-9`~!@#$%^&*()_+\s]{0,80}?$/
+    text.match(regex) && setValue(text)
+  }
 
   return (
     <ItemContainer>
       <Editor
-        type="text"
         value={value}
         placeholder="plz enter text"
-        onChange={(e) => {
-          const text = e.target.value
-          const regex = /^[a-zA-Z0-9`~!@#$%^&*()_+\s]*$/
-          text.match(regex) && setValue(text)
-        }}
+        onKeyDown={handleKeyDown}
+        onChange={handleChange}
       />
       <PlayButton />
     </ItemContainer>
@@ -46,33 +36,14 @@ const ItemContainer = styled.div`
   cursor: pointer;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: end;
+  flex-direction: column;
   padding: 0.5rem;
 `
 
-const Editor = styled.input`
+const Editor = styled.textarea`
   height: 1.5rem;
   border: none;
   outline: none;
-`
-
-interface IAddButtonProps {
-  onClick: () => void
-}
-
-function AddButton({ onClick }: IAddButtonProps) {
-  return (
-    <Button>
-      <PlusIcon onClick={onClick} />
-    </Button>
-  )
-}
-
-const Button = styled.div`
-  ${buttonStyle}
-  background: #eeeeee;
-  border-radius: 50%;
-  &:hover {
-    background: #d65a31;
-  }
+  min-height: 5rem;
 `
