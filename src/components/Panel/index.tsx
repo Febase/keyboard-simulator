@@ -80,4 +80,7 @@ const Container = styled.div<{ open: boolean }>`
       : css`
           transform: translate3D(20vw, 0, 0);
         `};
+  @media (max-width: 950px) {
+    display: none;
+  }
 `
