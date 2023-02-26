@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import styled from '@emotion/styled'
 import { ReactComponent as PlusIcon } from '../../res/plus.svg'
 import PlayButton from './PlayButton'
+import usePlayText from '../../hooks/usePlayText'
 
 export default function Items() {
   const [data, setData] = useState<string[]>([])
@@ -24,50 +25,12 @@ interface IItemProps {
 
 function Item({ text }: IItemProps) {
   const [value, setValue] = useState<string>(text)
-  const [isPlaying, setIsPlaying] = useState<boolean>(false)
-  const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null)
+  const { play, stop, isPlaying } = usePlayText()
 
-  const play = () => {
-    setIsPlaying(true)
-
-    let index = 0
-    const textArray = value.split('')
-    const id = setInterval(() => {
-      const keyId = textArray[index].toLowerCase()
-      const event = new CustomEvent('threekeyboardevent', {
-        detail: {
-          keyId,
-        },
-      })
-      document.dispatchEvent(event)
-
-      index++
-
-      if (index === textArray.length) {
-        clearInterval(id)
-        setIsPlaying(false)
-        setIntervalId(null)
-      }
-    }, 200)
-
-    setIntervalId(id)
-  }
-
-  const stop = () => {
-    if (intervalId) {
-      clearInterval(intervalId)
-
-      setIntervalId(null)
-      setIsPlaying(false)
-
-      document.dispatchEvent(
-        new CustomEvent('threekeyboardevent', {
-          detail: {
-            keyId: null,
-          },
-        }),
-      )
-    }
+  const handleEditorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const text = e.target.value
+    const regex = /^[a-zA-Z1-9`~!@#$%^&*()_+\s]*$/
+    text.match(regex) && setValue(text)
   }
 
   return (
@@ -76,14 +39,14 @@ function Item({ text }: IItemProps) {
         type="text"
         value={value}
         placeholder="plz enter text"
-        onChange={(e) => {
-          const text = e.target.value
-          const regex = /^[a-zA-Z1-9`~!@#$%^&*()_+\s]*$/
-
-          text.match(regex) && setValue(text)
-        }}
+        onChange={handleEditorChange}
       />
-      {<PlayButton isPlaying={isPlaying} onClick={isPlaying ? stop : play} />}
+      {
+        <PlayButton
+          isPlaying={isPlaying}
+          onClick={isPlaying ? stop : () => play(value)}
+        />
+      }
     </ItemContainer>
   )
 }
