@@ -46,14 +46,6 @@ const usePlayText = (): IUsePlayText => {
 
       intervalIdRef.current = null
       setIsPlaying(false)
-
-      document.dispatchEvent(
-        new CustomEvent('threekeyboardevent', {
-          detail: {
-            keyId: null,
-          },
-        }),
-      )
     }
   }
 

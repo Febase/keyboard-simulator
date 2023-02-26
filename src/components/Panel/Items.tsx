@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import styled from '@emotion/styled'
 import { ReactComponent as PlusIcon } from '../../res/plus.svg'
 import PlayButton from './PlayButton'
