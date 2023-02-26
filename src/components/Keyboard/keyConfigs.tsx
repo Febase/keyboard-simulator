@@ -18,7 +18,7 @@ const genKeyConfigsByRow = (
       colSpan: 1,
       color: baseOptions.color,
       legend: {
-        text: key,
+        text: key.toUpperCase(),
         color: baseOptions.color,
       },
     })
