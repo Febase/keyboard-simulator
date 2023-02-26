@@ -1,30 +1,31 @@
 import { IkeyConfig } from '../../types/KeyboardType'
 
-export const keyConfigs: IkeyConfig[] = [
-  {
-    row: 0,
+const keys = ['1234567890-=', 'qwertyuiop[]', "asdfghjkl;'", 'zxcvbnm,./']
+
+const genKeyConfigsByRow = (keysInRow: string, baseOptions: IkeyConfig) => {
+  const row = baseOptions.row
+  keysInRow.split('').map((key, idx) => {
+    keyConfigs.push({
+      row: row,
+      column: idx + baseOptions.column,
+      rowSpan: 1,
+      colSpan: 1,
+      color: baseOptions.color,
+      legend: {
+        text: key,
+        color: baseOptions.color,
+      },
+    })
+  })
+}
+
+export const keyConfigs: IkeyConfig[] = []
+keys.map((keysInRow, idx) =>
+  genKeyConfigsByRow(keysInRow, {
+    row: idx,
     column: 0,
-    rowSpan: 1,
-    colSpan: 1,
-    color: '#6096B4',
-    legend: { text: 'A', color: '#93BFCF' },
-  },
-  {
-    row: 0,
-    column: 1,
-    rowSpan: 1,
-    colSpan: 1,
-    color: '#F0EEED',
-    legend: { text: 'S', color: '#332C39' },
-  },
-  { row: 1, column: 0, rowSpan: 1, colSpan: 2, color: '#FFFFFF' },
-  { row: 0, column: 2, rowSpan: 1, colSpan: 2, color: '#000000' },
-  {
-    row: 1,
-    column: 2,
-    rowSpan: 1,
-    colSpan: 2,
-    color: '#EFA3C8',
-    legend: { text: 'ENTER', color: '#0F6292' },
-  },
-]
+    rowSpan: 0,
+    colSpan: 0,
+    color: '#332C39',
+  }),
+)
