@@ -19,7 +19,11 @@ export default function PlayButton({ isPlaying, onClick }: IPlayButtonProps) {
   }
 
   return (
-    <Button role="button" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <Button
+      role="button"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       {isPlaying ? (
         <StopIcon onClick={onClick} />
       ) : (

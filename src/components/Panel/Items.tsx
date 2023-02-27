@@ -9,6 +9,8 @@ export default function Items() {
 
 function Item() {
   const [value, setValue] = useState<string>('')
+  const { play, stop, isPlaying } = usePlayText()
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault()
