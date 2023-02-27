@@ -1,10 +1,9 @@
 import { useRef } from 'react'
-import { useHelper } from '@react-three/drei'
-import { DirectionalLight, DirectionalLightHelper } from 'three'
+import { DirectionalLight } from 'three'
 
 export default () => {
-  const frontLight = useRef<DirectionalLight>(null!)
-  const backShadow = useRef<DirectionalLight>(null!)
+  const frontLight = useRef<DirectionalLight | null>(null)
+  const backShadow = useRef<DirectionalLight | null>(null)
 
   return (
     <>
