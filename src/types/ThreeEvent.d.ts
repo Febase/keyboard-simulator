@@ -1,5 +1,5 @@
 export type ThreeEventType = {
-  keyId?: string
+  keyId?: string | null
 }
 
 interface ThreeCustomEvent {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import PlayButton from './PlayButton'
+import usePlayText from '../../hooks/usePlayText'
 
 export default function Items() {
   return <Item />
@@ -27,7 +28,12 @@ function Item() {
         onKeyDown={handleKeyDown}
         onChange={handleChange}
       />
-      <PlayButton />
+      {
+        <PlayButton
+          isPlaying={isPlaying}
+          onClick={isPlaying ? stop : () => play(value)}
+        />
+      }
     </ItemContainer>
   )
 }
