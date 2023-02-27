@@ -22,7 +22,7 @@ https://user-images.githubusercontent.com/9066602/221558192-b59fa237-1a46-4345-8
 3. 이벤트에 따라 키보드 애니메이션
 
 
-## 텍스트 이벤트 발생 로직
+## 텍스트 입력 패널
 ![image](https://user-images.githubusercontent.com/9066602/221560184-9de445d2-5142-490c-bb8c-a3582801e8b0.png)
 
 https://github.com/Febase/febase4-3d-team1/pull/9
