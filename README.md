@@ -9,6 +9,213 @@
 ---
 
 
+# Component Diagram(C4 Model)
+
+```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#222222',
+      'primaryTextColor': '#F2F2F2',
+      'primaryBorderColor': '#283140',
+      'lineColor': '#CC8899',
+      'secondaryColor': '#283140',
+      'tertiaryColor': '#F2F2F2'
+    }
+  }
+}%%
+
+flowchart LR
+
+subgraph User[키보드_사러온_손님]
+    direction LR
+    h1[-Person-]:::type
+    d1[키보드 시뮬레이터에서 원하는 키보드의 타자 소리를 미리 들어보고 싶은 유저]:::description
+end
+User:::person
+User--키보드 시뮬레이터 메인 페이지에 접속-->AppPageComponent
+
+
+subgraph axesHelper[axesHelper]
+end
+axesHelper:::externalModule
+
+subgraph OrbitControlsComponent[OrbitControls Component]
+end
+OrbitControlsComponent:::externalModule
+
+subgraph BoxComponent[Box Component]
+end
+BoxComponent:::externalModule
+
+subgraph meshStandardMaterial[meshStandardMaterial]
+end
+meshStandardMaterial:::externalModule
+
+subgraph extrudeGeometry[extrudeGeometry]
+end
+extrudeGeometry:::externalModule
+
+subgraph extrudeGeometry[extrudeGeometry]
+end
+extrudeGeometry:::externalModule
+
+subgraph bufferGeometry[bufferGeometry]
+end
+bufferGeometry:::externalModule
+
+subgraph bufferAttribute[bufferAttribute]
+end
+bufferAttribute:::externalModule
+
+subgraph planeGeometry[planeGeometry]
+end
+planeGeometry:::externalModule
+
+subgraph canvasTexture[canvasTexture]
+end
+canvasTexture:::externalModule
+
+subgraph ambientLight[ambientLight]
+end
+ambientLight:::externalModule
+
+subgraph directionalLight[directionalLight]
+end
+directionalLight:::externalModule
+
+subgraph WebApplication[Web Application]
+
+  %% src/App.tsx
+      subgraph AppPageComponent[App Page Component]
+        direction LR
+        d2[타이틀과 키보드용 캔버스, 텍스트 에디터를 포함하는 메인 페이지]:::description
+  end
+  AppPageComponent:::internalPageComponent
+  AppPageComponent--Renders-->MsgComponent
+  AppPageComponent--Renders-->ThreeFiberComponent
+  AppPageComponent--Renders-->PanelComponent
+
+  %% src/App.tsx
+      subgraph MsgComponent[Msg Component]
+        d3[팀명 노출]:::description
+      end
+  MsgComponent:::internalComponent
+
+  %% src/components/ThreeFiber/ThreeFiber.tsx
+      subgraph ThreeFiberComponent[ThreeFiber Component]
+        d4[캔버스 컨테이너]:::description
+      end
+  ThreeFiberComponent:::internalComponent
+  ThreeFiberComponent--Renders-->CanvasComponent
+
+  %% src/components/Panel/index.tsx
+      subgraph PanelComponent[Panel Component]
+        d5[에디터용 패널]:::description
+      end
+  PanelComponent:::internalComponent
+  PanelComponent--Renders-->OpenButtonComponent
+  PanelComponent--Renders-->ItemsComponent
+
+      %% src/components/Panel/index.tsx
+          subgraph OpenButtonComponent[OpenButton Component]
+          end
+      OpenButtonComponent:::internalComponent
+
+      %% src/components/Panel/Items.tsx
+          subgraph ItemsComponent[Items Component]
+          end
+      ItemsComponent:::internalComponent
+      ItemsComponent--Renders-->ItemComponent
+
+          %% src/components/Panel/Items.tsx
+              subgraph ItemComponent[Item Component]
+              end
+          ItemComponent:::internalComponent
+          ItemComponent--Renders-->EditorComponent
+          ItemComponent--Renders-->PlayButtonComponent
+
+              %% src/components/Panel/Items.tsx
+                  subgraph EditorComponent[Editor Component]
+                  end
+              EditorComponent:::internalComponent
+
+              %% src/components/Panel/Items.tsx
+                  subgraph PlayButtonComponent[PlayButton Component]
+                  end
+              PlayButtonComponent:::internalComponent
+
+
+      %% src/components/ThreeFiber/ThreeFiber.tsx
+          subgraph CanvasComponent[Canvas Component]
+            d6[캔버스]:::description
+          end
+      CanvasComponent:::internalComponent
+      CanvasComponent--Renders-->KeyboardComponent
+      CanvasComponent--Renders-->LightsComponent
+
+      %% src/components/Keyboard/index.tsx
+          subgraph KeyboardComponent[Keyboard Component]
+            d7[키보드]:::description
+          end
+      KeyboardComponent:::internalComponent
+      KeyboardComponent--Renders-->KeyComponent
+      KeyboardComponent--Renders-->BoardBottomComponent
+
+      %% src/components/Lights/index.tsx
+          subgraph LightsComponent[Lights Component]
+            d8[조명]:::description
+          end
+      LightsComponent:::internalComponent
+
+          %% src/components/Keyboard/Key/index.tsx
+              subgraph KeyComponent[Key Component]
+              end
+          KeyComponent:::internalComponent
+          KeyComponent--Renders-->KeyCapComponent
+          KeyComponent--Renders-->KeyLegendComponent
+
+          %% src/components/Keyboard/index.tsx
+              subgraph BoardBottomComponent[BoardBottom Component]
+                d12[키보드 밑판]:::description
+              end
+          BoardBottomComponent:::internalComponent
+
+              %% src/components/Keyboard/Key/KeyCap.tsx
+                  subgraph KeyCapComponent[KeyCap Component]
+                  end
+              KeyCapComponent:::internalComponent
+
+              %% src/components/Keyboard/Key/KeyLegend.tsx
+                  subgraph KeyLegendComponent[KeyLegend Component]
+                  end
+              KeyLegendComponent:::internalComponent
+
+end
+
+CanvasComponent--Uses-->axesHelper
+CanvasComponent--Uses-->OrbitControlsComponent
+KeyboardComponent--Uses-->BoxComponent
+KeyboardComponent--Uses-->meshStandardMaterial
+LightsComponent--Uses-->ambientLight
+LightsComponent--Uses-->directionalLight
+BoardBottomComponent--Uses-->extrudeGeometry
+BoardBottomComponent--Uses-->meshStandardMaterial
+KeyCapComponent--Uses-->bufferGeometry
+KeyCapComponent--Uses-->bufferAttribute
+KeyCapComponent--Uses-->meshStandardMaterial
+KeyLegendComponent--Uses-->planeGeometry
+KeyLegendComponent--Uses-->meshStandardMaterial
+KeyLegendComponent--Uses-->canvasTexture
+
+%% Element type definitions
+
+classDef person fill:#222222,stroke:#222222,stroke-width:4px,color:#F2F2F2,font-size:18px;
+classDef internalPageComponent fill:#8ADBFC,stroke:#8ADBFC,stroke-width:4px,color:#222222,font-size:18px;
+classDef internalComponent fill:#08427b,stroke:#08427b,stroke-width:4px,color:#F2F2F2,font-size:18px;
+classDef externalModule fill:#08427b,stroke:#08427b,stroke-width:4px,color:#F2F2F2,font-size:18px;
+```
 
 # 구현 내용
 
