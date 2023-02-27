@@ -12,11 +12,11 @@ export const ThreeFiber = () => {
   return (
     <CanvasContainer id="canvas-container">
       <Canvas
-        camera={{ position: [-2, 2, 5] }}
+        camera={{ position: [-6, 6, 10] }}
         gl={{ antialias: true, toneMapping: THREE.NoToneMapping }}
         // linear
       >
-        <Keyboard position={[-1, 0, -1]} />
+        <Keyboard position={[-8, 0, -2]} />
         <Lights />
         <axesHelper scale={10} />
         <OrbitControls />

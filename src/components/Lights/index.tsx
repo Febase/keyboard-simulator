@@ -6,9 +6,6 @@ export default () => {
   const frontLight = useRef<DirectionalLight>(null!)
   const backShadow = useRef<DirectionalLight>(null!)
 
-  useHelper(frontLight, DirectionalLightHelper, 2, '#FFB2F5')
-  useHelper(backShadow, DirectionalLightHelper, 2, '#990085')
-
   return (
     <>
       <ambientLight color="#FFFFFF" intensity={0.5} />
