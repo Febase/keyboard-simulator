@@ -38,7 +38,7 @@ export default (props: KeyProps) => {
   }
 
   return (
-    <group position={[0, keyDownPosition, 0]}>
+    <group position={[0, keyDownPosition, 0]} rotation={[Math.PI / 36, 0, 0]}>
       <KeyCap
         config={keyConfig}
         position={[keyConfig.column, 0, keyConfig.row]}
