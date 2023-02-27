@@ -2,53 +2,30 @@
 
 김병헌 이본행 임혜림 (가나다 순)
 
-배포: [https://febase4-3d-team1.pages.dev/](https://febase4-3d-team1.pages.dev/)
-
+데모: [https://febase4-3d-team1.pages.dev/](https://febase4-3d-team1.pages.dev/)
+중간발표 자료: [노션](https://leebh.notion.site/team1-65d4c4cf81b840c7a1bb0a9d2edee915)
 ---
 
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://user-images.githubusercontent.com/9066602/221558192-b59fa237-1a46-4345-8d2f-9e9e388810be.MP4
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+# 구현 내용
+구현 항목은 크게 세가지입니다.
+1. 텍스트 입력 패널
+2. 텍스트 이벤트 발생 로직
+3. 이벤트에 따라 키보드 애니메이션
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 텍스트 입력 패널
 
-### `npm test`
+https://github.com/Febase/febase4-3d-team1/pull/8 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 텍스트 이벤트 발생 로직
 
-### `npm run build`
+https://github.com/Febase/febase4-3d-team1/pull/9
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 이벤트에 따라 키보드 애니메이션
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+https://github.com/Febase/febase4-3d-team1/pull/6
