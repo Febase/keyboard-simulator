@@ -1,31 +1,53 @@
+import React from 'react'
 import { Vector3 } from '@react-three/fiber'
-import React, { useRef } from 'react'
 import { IkeyConfig } from '../../types/KeyboardType'
 import Key from './Key'
 import { keyConfigs } from './keyConfigs'
 import { Box } from '@react-three/drei'
-import { Color, MeshStandardMaterial } from 'three'
+import * as THREE from 'three'
 
 interface IKeyboardProps {
   position: Vector3
 }
 
-export default ({ position }: IKeyboardProps) => {
-  const caseMaterial = new MeshStandardMaterial({ color: new Color('#C0C0C0') })
+export default ({ position }: IKeyboardProps) => (
+  <group position={position}>
+    {keyConfigs.map((keyConfig: IkeyConfig) => (
+      <Key key={`${keyConfig.row}-${keyConfig.column}`} keyConfig={keyConfig} />
+    ))}
+    <BoardBottom />
+    <Box position={[7.5, -0.75, 2.55]} scale={[16, 0.5, 5.5]}>
+      <meshStandardMaterial attach="material" color="#c0c0c0" />
+    </Box>
+  </group>
+)
+
+const BoardBottom = () => {
+  const shape = new THREE.Shape()
+  shape.moveTo(0, 0)
+  shape.lineTo(0, 1)
+  shape.lineTo(1, 0)
+  shape.lineTo(0, 0)
+  shape.closePath()
+
+  const settings = {
+    steps: 1,
+    depth: 1,
+    bevelEnabled: false,
+  }
 
   return (
-    <group position={position}>
-      {keyConfigs.map((keyConfig: IkeyConfig) => (
-        <Key
-          key={`${keyConfig.row}-${keyConfig.column}`}
-          keyConfig={keyConfig}
-        />
-      ))}
-      <Box
-        position={[7.5, -0.35, 2.5]}
-        scale={[17, 0.55, 5.5]}
-        material={caseMaterial}
+    <mesh
+      position={[15.5, -0.5, -0.2]}
+      scale={[5.5, 0.5, 16]}
+      rotation={[0, -Math.PI * 0.5, 0]}
+    >
+      <extrudeGeometry args={[shape, settings]} />
+      <meshStandardMaterial
+        attach="material"
+        color={'#c0c0c0'}
+        side={THREE.DoubleSide}
       />
-    </group>
+    </mesh>
   )
 }
