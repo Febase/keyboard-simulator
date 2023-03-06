@@ -2,7 +2,7 @@
 
 김병헌 이본행 임혜림 (가나다 순)
 
-데모: [https://febase4-3d-team1.pages.dev/](https://febase4-3d-team1.pages.dev/)
+배포: [pages.dev](https://keyboard-simulator.pages.dev/)
 
 중간발표 자료: [노션](https://leebh.notion.site/team1-65d4c4cf81b840c7a1bb0a9d2edee915)
 
